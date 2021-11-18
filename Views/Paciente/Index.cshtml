@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CapsuleCorp.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pacientes</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo paciente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DNI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contrasenia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contrasenia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.pacienteID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.pacienteID">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.pacienteID">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

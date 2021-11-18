@@ -26,6 +26,21 @@ namespace CapsuleCorp.Controllers
             return View(await capsuleCorpDatabaseContext.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(string busqueda)
+        {
+            ViewData["ObtenerPacientes"] = busqueda;
+
+            var varPacientes = from p in _context.Turnos.Include(c => c.paciente) select p;
+
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                varPacientes = varPacientes.Where(s => s.paciente.apellido.Contains(busqueda));
+            }
+
+            return View(await varPacientes.AsNoTracking().ToListAsync());
+        }
+
         // GET: Turno/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +63,18 @@ namespace CapsuleCorp.Controllers
         // GET: Turno/Create
         public IActionResult Create()
         {
-            ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido");
+            // ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido");
+            
+            ViewData["pacienteID2"] =
+                new SelectList((from a in _context.Pacientes
+                                select new
+                                {
+                                    ID = a.pacienteID,
+                                    nombreCompleto = a.nombre + " " + a.apellido
+                                }),
+                "ID",
+                "nombreCompleto");
+
             return View();
         }
 
@@ -65,7 +91,20 @@ namespace CapsuleCorp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
+
+            //ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
+
+            ViewData["pacienteID2"] =
+                new SelectList((from a in _context.Pacientes
+                                select new
+                                {
+                                    ID = a.pacienteID,
+                                    nombreCompleto = a.nombre + " " + a.apellido
+                                }),
+                "ID",
+                "nombreCompleto",
+                turno.pacienteID);
+
             return View(turno);
         }
 

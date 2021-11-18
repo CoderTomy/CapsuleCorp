@@ -19,6 +19,7 @@ namespace CapsuleCorp.Models
         [Required(ErrorMessage = "Por favor, ingrese una fecha")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime fecha { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese una especialidad")]

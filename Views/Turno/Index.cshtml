@@ -4,44 +4,70 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Turnos</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.especialidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.paciente)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.especialidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.paciente.apellido)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.turnoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.turnoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.turnoID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container">
+    <main role="main" class="pb-3">
+        <div id="container" class="container-index">
+            <div id="left" class="left-index">
+                <form method="get" asp-action="Index">
+                    <p class="p-index">
+                        Buscar turno: <input type="search" class="form-control mr-sm-2 input-index"
+                                             placeholder="Ingrese apellido" value="@ViewData["ObtenerPacientes"]" name="busqueda">
+                        <input class="btn btn-primary" type="submit" value="Buscar" />
+                        <a asp-action="Index">Ver turnos</a>
+                    </p>
+                </form>
+            </div>
+
+            <div>
+                <p><a asp-action="Create" class="btn btn-primary">Crear nuevo turno</a></p>
+            </div>
+
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.especialidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.paciente.apellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.paciente.nombre)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha) @Html.DisplayFor(modelItem => item.fecha.TimeOfDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.especialidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.paciente.apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.paciente.nombre)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.turnoID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.turnoID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.turnoID">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+</div>

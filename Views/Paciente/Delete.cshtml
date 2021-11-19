@@ -6,9 +6,11 @@
 
 <h1>Eliminar</h1>
 
-<h3>¿Está seguro que desea eliminar este paciente?</h3>
+<div class="alert alert-danger" role="alert">
+    ¿Está seguro de que desea eliminar este pciente?
+</div>
+
 <div>
-    <h4>Paciente</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -45,7 +47,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="pacienteID" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Volver</a>
     </form>
 </div>

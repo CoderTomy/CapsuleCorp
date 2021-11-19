@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Pacientes</h1>
+<h1>Pacientes</h1> <hr> <br>
 
 <div class="container">
     <main role="main" class="pb-3">
@@ -12,19 +12,19 @@
             <div id="left" class="left-index">
                 <form method="get" asp-action="Index">
                     <p class="p-index">
-                        Buscar paciente: <input type="search" class="form-control mr-sm-2 input-index"
+                        Buscar paciente: <input type="search" class="form-control mr-sm-2 col-lg-3 input-index"
                                                 placeholder="Ingrese apellido" value="@ViewData["ObtenerPacientes"]" name="busqueda">
-                        <input class="btn btn-primary" type="submit" value="Buscar" />
-                        <a asp-action="Index" class="btn btn-primary">Ver pacientes</a>
+                        <input class="btn btn-primary mt-3" type="submit" value="Buscar" />
+                        <a asp-action="Index" class="btn btn-primary mt-3">Ver pacientes</a>
                     </p>
                     </form>
-                </div>
+                </div> <br>
 
                 <div>
-                    <p><a asp-action="Create" class="btn btn-primary">Crear nuevo paciente</a></p>
+                    <p><a asp-action="Create" class="btn btn-success">Crear nuevo paciente</a></p>
                 </div>
 
-            </div>
+            </div> <br>
 
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -51,25 +51,25 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DNI)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.nombre)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.apellido)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.mail)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.contrasenia)
                             </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.pacienteID">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.pacienteID">Detalles</a> |
-                                <a asp-action="Delete" asp-route-id="@item.pacienteID">Eliminar</a>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.pacienteID" class="btn btn-primary mr-3">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.pacienteID" class="btn btn-info mr-3">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.pacienteID" class="btn btn-danger">Eliminar</a>
                             </td>
                         </tr>
                     }

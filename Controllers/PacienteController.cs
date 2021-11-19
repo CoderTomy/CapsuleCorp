@@ -25,6 +25,21 @@ namespace CapsuleCorp.Controllers
             return View(await _context.Pacientes.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(string busqueda)
+        {
+            ViewData["ObtenerPacientes"] = busqueda;
+
+            var varPacientes = from p in _context.Pacientes select p;
+
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                varPacientes = varPacientes.Where(s => s.apellido.Contains(busqueda));
+            }
+
+            return View(await varPacientes.AsNoTracking().ToListAsync());
+        }
+
         // GET: Paciente/Details/5
         public async Task<IActionResult> Details(int? id)
         {

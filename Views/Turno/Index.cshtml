@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Turnos</h1>
+<h1>Turnos</h1> <hr> <br>
 
 <div class="container">
     <main role="main" class="pb-3">
@@ -12,60 +12,60 @@
             <div id="left" class="left-index">
                 <form method="get" asp-action="Index">
                     <p class="p-index">
-                        Buscar turno: <input type="search" class="form-control mr-sm-2 input-index"
+                        Buscar turno: <input type="search" class="form-control mr-sm-2 col-lg-3 input-index"
                                              placeholder="Ingrese apellido" value="@ViewData["ObtenerPacientes"]" name="busqueda">
-                        <input class="btn btn-primary" type="submit" value="Buscar" />
-                        <a asp-action="Index">Ver turnos</a>
+                        <input class="btn btn-primary mt-3" type="submit" value="Buscar" />
+                        <a asp-action="Index" class="btn btn-primary mt-3">Ver turnos</a>
                     </p>
                 </form>
-            </div>
+            </div> <br>
 
             <div>
-                <p><a asp-action="Create" class="btn btn-primary">Crear nuevo turno</a></p>
+                <p><a asp-action="Create" class="btn btn-success">Crear nuevo turno</a></p>
             </div>
 
-        </div>
+        </div> <br>
 
-        <table class="table">
-            <thead>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <th>
+                    <th class="text-center">
                         @Html.DisplayNameFor(model => model.fecha)
                     </th>
-                    <th>
+                    <th class="text-center">
                         @Html.DisplayNameFor(model => model.especialidad)
                     </th>
-                    <th>
+                    <th class="text-center">
                         @Html.DisplayNameFor(model => model.paciente.apellido)
                     </th>
-                    <th>
+                    <th class="text-center">
                         @Html.DisplayNameFor(model => model.paciente.nombre)
                     </th>
-                    <th></th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fecha) @Html.DisplayFor(modelItem => item.fecha.TimeOfDay)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.especialidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.paciente.apellido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.paciente.nombre)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.turnoID">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.turnoID">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.turnoID">Eliminar</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.fecha) @Html.DisplayFor(modelItem => item.fecha.TimeOfDay)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.especialidad)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.paciente.apellido)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.paciente.nombre)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.turnoID" class="btn btn-primary mr-3">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.turnoID" class="btn btn-info mr-3">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@item.turnoID" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

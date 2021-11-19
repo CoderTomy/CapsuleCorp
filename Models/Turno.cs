@@ -17,7 +17,6 @@ namespace CapsuleCorp.Models
         public int turnoID { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese una fecha")]
-        [DataType(DataType.Date)]
         [Display(Name = "Fecha")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime fecha { get; set; }

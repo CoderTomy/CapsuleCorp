@@ -7,7 +7,6 @@
 <h1>Detalles</h1>
 
 <div>
-    <h4>Turno</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +30,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.turnoID">Editar</a> |
-    <a asp-action="Index">Volver</a>
+    <a asp-action="Edit" asp-route-id="@Model.turnoID" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-primary">Volver</a>
 </div>

@@ -13,67 +13,67 @@
                 <form method="get" asp-action="Index">
                     <p class="p-index">
                         Buscar paciente: <input type="search" class="form-control mr-sm-2 input-index"
-                                             placeholder="Ingrese apellido" value="@ViewData["ObtenerPacientes"]" name="busqueda">
+                                                placeholder="Ingrese apellido" value="@ViewData["ObtenerPacientes"]" name="busqueda">
                         <input class="btn btn-primary" type="submit" value="Buscar" />
-                        <a asp-action="Index">Ver pacientes</a>
+                        <a asp-action="Index" class="btn btn-primary">Ver pacientes</a>
                     </p>
-                </form>
+                    </form>
+                </div>
+
+                <div>
+                    <p><a asp-action="Create" class="btn btn-primary">Crear nuevo paciente</a></p>
+                </div>
+
             </div>
 
-            <div>
-                <p><a asp-action="Create" class="btn btn-primary">Crear nuevo paciente</a></p>
-            </div>
-
-        </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DNI)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.apellido)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.mail)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.contrasenia)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DNI)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.apellido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.contrasenia)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.pacienteID">Editar</a> |
-                            <a asp-action="Details" asp-route-id="@item.pacienteID">Detalles</a> |
-                            <a asp-action="Delete" asp-route-id="@item.pacienteID">Eliminar</a>
-                        </td>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.DNI)
+                        </th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.apellido)
+                        </th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.mail)
+                        </th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.contrasenia)
+                        </th>
+                        <th class="text-center">Acciones</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </main>
-</div>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DNI)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.apellido)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.contrasenia)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.pacienteID">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.pacienteID">Detalles</a> |
+                                <a asp-action="Delete" asp-route-id="@item.pacienteID">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </main>
+    </div>

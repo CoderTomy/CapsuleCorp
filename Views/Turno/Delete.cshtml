@@ -35,7 +35,7 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="turnoID" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" onclick="alert('@ViewBag.SuccessMessage')"/>
         <a asp-action="Index" class="btn btn-primary">Volver</a>
     </form>
 </div>

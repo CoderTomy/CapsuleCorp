@@ -61,6 +61,7 @@ namespace CapsuleCorp.Controllers
         // GET: Paciente/Create
         public IActionResult Create()
         {
+            ViewBag.SuccessMessage = "¡Se ha creado el paciente correctamente!";
             return View();
         }
 
@@ -93,6 +94,8 @@ namespace CapsuleCorp.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.SuccessMessage = "¡Se ha actualizado el paciente correctamente!";
             return View(paciente);
         }
 
@@ -146,6 +149,7 @@ namespace CapsuleCorp.Controllers
                 return NotFound();
             }
 
+            ViewBag.SuccessMessage = "¡Se ha eliminado el paciente correctamente!";
             return View(paciente);
         }
 

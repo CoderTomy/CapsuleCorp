@@ -75,6 +75,7 @@ namespace CapsuleCorp.Controllers
                 "ID",
                 "nombreCompleto");
 
+            ViewBag.SuccessMessage = "¡Se ha creado el turno correctamente!";
             return View();
         }
 
@@ -122,6 +123,7 @@ namespace CapsuleCorp.Controllers
                 return NotFound();
             }
             ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
+            ViewBag.SuccessMessage = "¡Se ha actualizado el turno correctamente!";
             return View(turno);
         }
 
@@ -177,6 +179,7 @@ namespace CapsuleCorp.Controllers
                 return NotFound();
             }
 
+            ViewBag.SuccessMessage = "¡Se ha eliminado el turno correctamente!";
             return View(turno);
         }
 

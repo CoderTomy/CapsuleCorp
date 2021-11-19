@@ -7,7 +7,7 @@
 <h1>Eliminar</h1>
 
 <div class="alert alert-danger" role="alert">
-    ¿Está seguro de que desea eliminar este pciente?
+    ¿Está seguro de que desea eliminar este paciente?
 </div>
 
 <div>
@@ -47,7 +47,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="pacienteID" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" onclick="alert('@ViewBag.SuccessMessage')"/>
         <a asp-action="Index" class="btn btn-primary">Volver</a>
     </form>
 </div>

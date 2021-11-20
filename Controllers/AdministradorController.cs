@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CapsuleCorp.Context;
 using CapsuleCorp.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CapsuleCorp.Controllers
 {
     public class AdministradorController : Controller
     {
         private readonly CapsuleCorpDatabaseContext _context;
+        private Administrador adminContext;
 
         public AdministradorController(CapsuleCorpDatabaseContext context)
         {
@@ -149,5 +151,38 @@ namespace CapsuleCorp.Controllers
         {
             return _context.Administradores.Any(e => e.ID == id);
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(String mail, String contrasenia)
+        {
+            if (ModelState.IsValid)
+            {
+                var adminsFromDB = await _context.Administradores.FirstOrDefaultAsync(adm => adm.mail == mail && adm.contrasenia == contrasenia);
+
+                if (adminsFromDB == null)
+                {
+                    ViewBag.Error = "Datos incorrectos. Por favor, intente nuevamente.";
+                    return View();
+                }
+                adminContext = adminsFromDB;
+                HttpContext.Session.SetString("admin", adminsFromDB.mail);
+                return RedirectToAction("Index", "Paciente");
+            }
+            return View(null);
+        }
+
+        public RedirectToActionResult Logout()
+        {
+            HttpContext.Session.SetString("admin", string.Empty);
+            Console.WriteLine(HttpContext.Session.GetString("admin"));
+            return RedirectToAction("Index", "Home");
+
+        }
+
     }
 }

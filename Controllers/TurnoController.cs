@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CapsuleCorp.Context;
 using CapsuleCorp.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CapsuleCorp.Controllers
 {
@@ -29,6 +30,13 @@ namespace CapsuleCorp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string busqueda)
         {
+            var adminLog = HttpContext.Session.GetString("admin");
+
+            if (String.IsNullOrEmpty(adminLog))
+            {
+                return RedirectToAction("Login", "Administrador");
+            }
+
             ViewData["ObtenerPacientes"] = busqueda;
 
             var varPacientes = from p in _context.Turnos.Include(c => c.paciente) select p;

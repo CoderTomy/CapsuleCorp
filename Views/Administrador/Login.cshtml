@@ -6,43 +6,28 @@
 <link href="@Url.Content("~/css/login/util.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/css/estilos.css")" rel="stylesheet" type="text/css" />
 
+<div align="center" class="mt-5">
+    <img src="/images/login.png" class="img-responsive center-block" alt="Responsive image" id="imagen">
+    <style>
+        #imagen
+        {
+            width: 230px;
+            height: 230px;
+            border-radius: 80px;
+        }
+    </style>
+</div>
 
-
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100 login-wrap">
-            <form asp-action="Login" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <span class="login100-form-title">
-                    Iniciar sesión
-                </span>
-
-                <div class="text-center p-t-13 p-b-23 login-text">
-                    <span class="txt1 login-font">
-                        Para acceder a los menús de turnos y pacientes necesita una cuenta de administrador.
-                    </span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                    <input asp-for="mail" name="mail" class="input100" type="text" placeholder="Correo electronico">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input login-pass" data-validate="Please enter password">
-                    <input asp-for="contrasenia" name="contrasenia" type="password" class="input100" placeholder="Contraseña">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="login-error">
-                    <span class="text-danger">@ViewBag.Error</span>
-                </div>
-
-                <div class="container-login100-form-btn login-ingresar">
-                    <button class="login100-form-btn">
-                        Ingresar
-                    </button>
-                </div>
-            </form>
+<div align="center" class="mt-5">
+    <form asp-action="Login">
+        <div class="mb-3 mt-3">
+            <label for="email">E-mail:</label> <br>
+            <input asp-for="mail" type="email" class="form-control col-lg-3" placeholder="Ingrese su e-mail" name="mail">
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="pwd">Contraseña:</label> <br>
+            <input asp-for="contrasenia" type="password" class="form-control col-lg-3 " placeholder="Ingrese su contraseña" name="contrasenia">
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">Iniciar sesión</button>
+    </form>
 </div>

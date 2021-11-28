@@ -17,7 +17,7 @@ namespace CapsuleCorp.Models
         public int pacienteID { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese un DNI")]
-        [Range(10000000, 99999999, ErrorMessage = "Por favor, no ingrese valores fuera de rango")]
+        [Range(10000000, 99999999, ErrorMessage = "Por favor, ingrese valores entre 10000000 y 99999999")]
         public int DNI { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese un nombre")]
@@ -39,7 +39,7 @@ namespace CapsuleCorp.Models
         public string mail { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese una contraseña")]
-        [MinLength(4), MaxLength(20)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "La contraseña debe contener al menos 8 caracteres, 1 mayúscula, 1 minúscula y 1 número")]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }

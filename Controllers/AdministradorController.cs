@@ -48,6 +48,7 @@ namespace CapsuleCorp.Controllers
         // GET: Administrador/Create
         public IActionResult Create()
         {
+            ViewBag.SuccessMessage = "¡Se ha creado el administrador correctamente!";
             return View();
         }
 
@@ -80,6 +81,8 @@ namespace CapsuleCorp.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.SuccessMessage = "¡Se ha actualizado el administrador correctamente!";
             return View(administrador);
         }
 
@@ -133,6 +136,7 @@ namespace CapsuleCorp.Controllers
                 return NotFound();
             }
 
+            ViewBag.SuccessMessage = "¡Se ha eliminado el administrador correctamente!";
             return View(administrador);
         }
 

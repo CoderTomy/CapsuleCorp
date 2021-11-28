@@ -16,10 +16,16 @@ namespace CapsuleCorp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor, ingrese un e-mail")]
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "El e-mail ingresado es incorrecto")]
+        [Display(Name = "E-mail")]
         public string mail { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor, ingrese una contraseña")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "La contraseña debe contener al menos 8 caracteres, 1 mayúscula, 1 minúscula y 1 número")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }
     }
 }

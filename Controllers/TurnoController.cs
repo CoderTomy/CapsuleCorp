@@ -94,14 +94,22 @@ namespace CapsuleCorp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("turnoID,fecha,especialidad,pacienteID")] Turno turno)
         {
+            var turnosFromDB = await _context.Turnos.FirstOrDefaultAsync(x => x.fecha.Year == turno.fecha.Year && 
+            x.fecha.Month == turno.fecha.Month && x.fecha.Day == turno.fecha.Day &&
+            x.fecha.Hour == turno.fecha.Hour && x.especialidad == turno.especialidad);
+
+            if (turnosFromDB != null)
+            {
+                ViewBag.Error = "Este turno ya ha sido reservado.";
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(turno);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            //ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
 
             ViewData["pacienteID2"] =
                 new SelectList((from a in _context.Pacientes
@@ -142,6 +150,16 @@ namespace CapsuleCorp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("turnoID,fecha,especialidad,pacienteID")] Turno turno)
         {
+            var turnosFromDB = await _context.Turnos.FirstOrDefaultAsync(x => x.fecha.Year == turno.fecha.Year &&
+            x.fecha.Month == turno.fecha.Month && x.fecha.Day == turno.fecha.Day &&
+            x.fecha.Hour == turno.fecha.Hour && x.especialidad == turno.especialidad);
+
+            if (turnosFromDB != null)
+            {
+                ViewBag.Error = "Este turno ya ha sido reservado.";
+                return View();
+            }
+
             if (id != turno.turnoID)
             {
                 return NotFound();

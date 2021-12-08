@@ -86,6 +86,7 @@ namespace CapsuleCorp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(paciente);
         }
 
@@ -137,8 +138,10 @@ namespace CapsuleCorp.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(paciente);
         }
 
@@ -169,6 +172,7 @@ namespace CapsuleCorp.Controllers
             var paciente = await _context.Pacientes.FindAsync(id);
             _context.Pacientes.Remove(paciente);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

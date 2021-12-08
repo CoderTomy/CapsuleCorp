@@ -138,6 +138,7 @@ namespace CapsuleCorp.Controllers
             {
                 return NotFound();
             }
+
             ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
             ViewBag.SuccessMessage = "¡Se ha actualizado el turno correctamente!";
             return View(turno);
@@ -183,8 +184,10 @@ namespace CapsuleCorp.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["pacienteID"] = new SelectList(_context.Pacientes, "pacienteID", "apellido", turno.pacienteID);
             return View(turno);
         }
@@ -217,6 +220,7 @@ namespace CapsuleCorp.Controllers
             var turno = await _context.Turnos.FindAsync(id);
             _context.Turnos.Remove(turno);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

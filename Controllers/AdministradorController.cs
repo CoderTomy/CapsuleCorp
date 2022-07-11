@@ -65,6 +65,7 @@ namespace CapsuleCorp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(administrador);
         }
 
@@ -116,8 +117,10 @@ namespace CapsuleCorp.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(administrador);
         }
 
@@ -148,6 +151,7 @@ namespace CapsuleCorp.Controllers
             var administrador = await _context.Administradores.FindAsync(id);
             _context.Administradores.Remove(administrador);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -173,10 +177,13 @@ namespace CapsuleCorp.Controllers
                     ViewBag.Error = "Datos incorrectos. Por favor, intente nuevamente.";
                     return View();
                 }
+
                 adminContext = adminsFromDB;
                 HttpContext.Session.SetString("admin", adminsFromDB.mail);
+
                 return RedirectToAction("Index", "Paciente");
             }
+
             return View(null);
         }
 
@@ -184,9 +191,8 @@ namespace CapsuleCorp.Controllers
         {
             HttpContext.Session.SetString("admin", string.Empty);
             Console.WriteLine(HttpContext.Session.GetString("admin"));
+
             return RedirectToAction("Index", "Home");
-
         }
-
     }
 }
